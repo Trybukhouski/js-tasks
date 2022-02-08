@@ -128,3 +128,52 @@ null == "\n0\n"
 null === +"\n0\n"
 // Answer: false
 
+
+
+
+
+// IF ELSE
+
+// 1.
+// Will alert be shown?
+
+if ("0") {
+  alert( 'Hello' );
+}
+// Answer: yes, "0" is true
+
+// 2
+// Using the if..else construct, write the code which asks: ‘What is the “official” name of JavaScript?’
+// If the visitor enters “ECMAScript”, then output “Right!”, otherwise – output: “You don’t know? ECMAScript!”
+
+let answer = 'dont know'
+if (answer === 'ECMAScript') {
+  console.log('Right!')
+} else {
+  console.log('You don’t know? ECMAScript!')
+}
+
+// 3
+// https://javascript.info/task/sign
+
+let answer = prompt('your number', '')
+if (answer > 0) {
+  alert(1);
+} else if (answer < 0) {
+  alert(-1)
+} else {
+  alert(0)
+}
+
+// 4
+// https://javascript.info/task/rewrite-if-question
+
+let result = (a + b < 4) ? 'Below' : 'Over';
+
+// 5
+// https://javascript.info/task/rewrite-if-else-question
+
+let message = (login == 'Employee') ? 'Hello' :
+  (login == 'Director') ? 'Greetings' :
+  (login == '') ? 'No login' : ''
+
