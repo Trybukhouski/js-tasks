@@ -177,3 +177,78 @@ let message = (login == 'Employee') ? 'Hello' :
   (login == 'Director') ? 'Greetings' :
   (login == '') ? 'No login' : ''
 
+
+
+
+// LOGICAL OPERATORS
+
+// 1
+// https://javascript.info/task/alert-null-2-undefined
+
+// Answer: 2
+
+// 2
+// https://javascript.info/task/alert-or
+
+// Answer: 1, then 2
+
+// 3
+// https://javascript.info/task/alert-1-null-2
+
+// Answer: null
+
+// 4
+// https://javascript.info/task/alert-and
+
+// Answer: 1, then undefined
+
+// 5
+// https://learn.javascript.ru/task/alert-and-or
+
+// Answer: 3
+
+// 6
+// https://javascript.info/task/check-if-in-range
+
+let age;
+if (age >= 14 && age <= 90) return true;
+
+// 7
+// https://javascript.info/task/check-if-out-range
+
+if (!(age >= 14) && !(age <= 90)) return true;
+if (age < 14 && age > 90) return true;
+
+// 8
+// https://javascript.info/task/if-question
+
+if (-1 || 0) alert( 'first' );
+// Answer: - 1, yes
+if (-1 && 0) alert( 'second' );
+// Answer: 0, no
+if (null || -1 && 1) alert( 'third' );
+// Answer: 1, yes
+
+// 9
+// https://javascript.info/task/check-login
+
+let login = prompt('Login', '');
+if (login === 'Admin') {
+  let pass = prompt('Password', '');
+  switch (pass) {
+    case 'TheMaster': 
+      alert('Welcome!');
+      break;
+    case null:
+      alert('Canceled');
+      break;
+    default:
+      alert('Wrong password');
+      break;
+  }
+} else if (login === '' || login === null) {
+  alert('Canceled');
+} else {
+  alert('I don’t know you')
+}
+
