@@ -252,3 +252,63 @@ if (login === 'Admin') {
   alert('I don’t know you')
 }
 
+
+
+
+// WHILE AND FOR
+
+// 1.
+// https://javascript.info/task/loop-last-value
+
+// Answer: 1
+
+// 2
+// https://learn.javascript.ru/task/which-value-while
+
+// Answer:
+// 1,2,3,4
+// 1,2,3,4,5
+
+// 3
+// https://javascript.info/task/which-value-for
+
+// Answer:
+// 0,1,2,3,4
+// 0,1,2,3,4
+
+// 4
+// https://javascript.info/task/for-even
+
+for(let i = 2; i <= 10; i += 2) {
+  console.log(i);
+}
+
+// 5
+// https://javascript.info/task/replace-for-while
+
+let i = 0;
+while (i < 3) {
+  alert( `number ${i}!`);
+  i++;
+}
+
+// 6
+// https://javascript.info/task/repeat-until-correct
+
+let number = 0;
+while (number <= 100 && number) {
+  number = prompt('Your number', '');
+}
+
+// 7
+// https://javascript.info/task/list-primes
+
+let n = +prompt('your num', '');
+
+next: 
+for (let i = 2; i <= n; i++) {
+  for(let ii = 2; ii < i; ii++) {
+    if (i % ii === 0) continue next;
+  }
+  alert(i);
+}
