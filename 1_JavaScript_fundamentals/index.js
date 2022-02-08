@@ -103,7 +103,28 @@ undefined + 1
 
 let a = prompt("First number?", 1);
 let b = prompt("Second number?", 2);
-
 alert(+a + +b);
 
+
+
+
+// COMPARISONS
+
+// 1
+// What will be the result for these expressions?
+
+5 > 4
+// Answer: true
+"apple" > "pineapple"
+// Answer: true
+"2" > "12"
+// Answer: false
+undefined == null
+// Answer: true
+undefined === null
+// Answer: false
+null == "\n0\n"
+// Answer: false
+null === +"\n0\n"
+// Answer: false
 
