@@ -19,3 +19,26 @@ alert(admin);
 let ourPlanet = 'Earth';
 let currentUser = 'John';
 
+// 3
+// Here we have a constant birthday date and the age is calculated from birthday with the help of some code (it is not provided for shortness, and because details don’t matter here).
+// Would it be right to use upper case for birthday? For age? Or even for both?
+
+// Answer:
+// 1. yes
+// 2. no
+
+
+
+
+// DATA TYPES
+
+// 1.
+// What is the output of the script?
+
+let name = "Ilya";
+alert( `hello ${1}` );
+// hello 1
+alert( `hello ${"name"}` ); // ?
+// hello name
+alert( `hello ${name}` ); // ?
+// hello Ilya
