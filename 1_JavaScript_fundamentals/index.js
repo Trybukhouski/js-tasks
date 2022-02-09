@@ -394,3 +394,18 @@ if (n < 1) {
 
 
 
+// ARROW FUNCTIONS
+
+// 1
+// https://javascript.info/task/rewrite-arrow
+
+const ask = (question, yes, no) => {
+  if (confirm(question)) yes();
+  else no();
+}
+
+ask(
+  "Do you agree?",
+  () => alert("You agreed."),
+  () => alert("You canceled the execution.")
+);
