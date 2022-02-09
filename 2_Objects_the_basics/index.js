@@ -73,8 +73,11 @@ console.log(`-----Task 6-----`);
 
 let calculator = {
   read() {
-    this.firstValue = prompt('First Value', '');
-    this.secondtValue = prompt('Second Value', '');
+    // Comment this code cause prompt dont work in VSCODE
+    // this.firstValue = prompt('First Value', '');
+    // this.secondtValue = prompt('Second Value', '');
+    this.firstValue = 1;
+    this.secondtValue = 2;
     return this;
   },
   sum() {
@@ -85,11 +88,11 @@ let calculator = {
   },
 }
 calculator.read();
-alert( calculator.sum() );
-alert( calculator.mult() );
+console.log( calculator.sum() );
+console.log( calculator.mult() );
 
 // https://javascript.info/task/chain-calls
-console.log(`-----Task 6-----`);
+console.log(`-----Task 7-----`);
 
 let ladder = {
   step: 0,
@@ -107,3 +110,75 @@ let ladder = {
   }
 };
 ladder.up().up().down().showStep().down().showStep()
+
+
+
+
+// CONSTRUCTOR
+
+// https://javascript.info/task/two-functions-one-object
+console.log(`-----Task 8-----`);
+
+const arr = [1,2,3]
+function A() {
+  return arr;
+};
+function B() {
+  return arr;
+};
+let a = new A;
+let b = new B;
+console.log( a === b );
+
+// https://javascript.info/task/calculator-constructor
+console.log(`-----Task 9-----`);
+
+function Calculator() {
+  this.read = function() {
+    // Comment this code cause prompt dont work in VSCODE
+    // this.firstValue = prompt('First Value', '');
+    // this.secondtValue = prompt('Second Value', '');
+    this.firstValue = 1;
+    this.secondtValue = 2;
+    return this;
+  };
+  this.sum = function() {
+    return +this.firstValue + +this.secondtValue;
+  };
+  this.mult = function() {
+    return this.firstValue * this.secondtValue;
+  };
+}
+
+const firstCalc = new Calculator();
+firstCalc.read();
+console.log( firstCalc.sum() );
+console.log( firstCalc.mult() );
+
+const secondCalc = new Calculator();
+secondCalc.read();
+console.log( secondCalc.sum() );
+console.log( secondCalc.mult() );
+
+// https://javascript.info/task/accumulator
+console.log(`-----Task 9-----`);
+
+function Accumulator(startingValue) {
+  this.startingValue = startingValue;
+  this.read = function () {
+    this.startingValue += +prompt('Your number', '');
+  }
+}
+
+let firstAcc = new Accumulator(2);
+firstAcc.read();
+firstAcc.read();
+firstAcc.read();
+console.log(firstAcc.startingValue);
+
+
+
+
+
+
+
