@@ -352,3 +352,45 @@ switch (a) {
     break;
 }
 
+// FUNCTIONS
+
+// 1
+// https://javascript.info/task/if-else-required
+
+// Answer: have no differences
+
+// 2
+// https://javascript.info/task/rewrite-function-question-or
+
+function checkAge(age) {
+  return (age > 18) ? true : confirm('Родители разрешили?');
+}
+
+function checkAge(age) {
+  return (age > 18) || confirm('Родители разрешили?');
+}
+
+// 3
+// https://javascript.info/task/min
+
+function min (a, b) {
+  return a < b ? a : b;
+}
+
+// 4
+// https://javascript.info/task/pow
+
+let x = prompt('x =', '');
+let n = prompt('n =', '')
+function pow (x, n) {
+  return x ** n;
+}
+if (n < 1) {
+  alert('Sorry!')
+} else {
+  pow(x, n)
+}
+
+
+
+
