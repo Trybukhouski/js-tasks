@@ -237,3 +237,73 @@ room.occupiedBy = meetup;
 meetup.self = meetup;
 let result2 = JSON.stringify(meetup, (key, value) => (value === meetup && key !== "") ? undefined : value)
 console.log(result2);
+
+
+console.log('-----Task 23-----');
+// https://learn.javascript.ru/task/new-date
+
+let day = new Date(2012, 1, 20, 3, 12);
+console.log(day)
+
+
+console.log('-----Task 24-----');
+// https://learn.javascript.ru/task/get-week-day
+
+const  getWeekDay = date => ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'][date.getDay() - 1];
+let date = new Date();
+console.log(getWeekDay(date));
+
+
+console.log('-----Task 25-----');
+// https://learn.javascript.ru/task/weekday
+
+function getLocalDay(date) {
+  return date.getDay() === 0 ? 1 : date.getDay();
+}
+const euroday = new Date();
+euroday.setDate(6);
+console.log(getLocalDay(euroday))
+
+
+console.log('-----Task 26-----');
+// https://learn.javascript.ru/task/get-date-ago
+
+function getDateAgo(date, days) {
+  const actualDate = new Date(date);
+  actualDate.setDate(date.getDate() - days);
+  return actualDate.getDate();
+}
+const currentDay = new Date();
+console.log(getDateAgo(currentDay, 20))
+
+
+console.log('-----Task 27-----');
+// https://learn.javascript.ru/task/last-day-of-month
+
+function getLastDayOfMonth(year, month) {
+  const lastDay = new Date(year, month, 0);
+  return lastDay.getDate();
+}
+console.log(getLastDayOfMonth(2022, 2));
+
+
+console.log('-----Task 28-----');
+// https://learn.javascript.ru/task/get-seconds-today
+
+function getSecondsToday() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  return Math.round((now - today) / 1000);
+}
+console.log(getSecondsToday());
+
+
+console.log('-----Task 29-----');
+// https://learn.javascript.ru/task/get-seconds-to-tomorrow
+
+function getSecondsToTomorrow() {
+  const now = new Date();
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+  return Math.round((tomorrow - now) / 1000);
+}
+console.log(getSecondsToTomorrow())
