@@ -191,6 +191,7 @@ console.log('-----Task 13-----');
 function logTheNum() {
   console.log('ok!');
 }
+
 function debounce(func, ms) {
   let isReady = false;
   return function() {
@@ -199,6 +200,27 @@ function debounce(func, ms) {
     setTimeout(() => isReady = false, ms);
   }
 }
+let first = debounce(logTheNum(), 100000);
+first();
+first();
 
 
 
+console.log('-----Task 14-----');
+// https://learn.javascript.ru/task/write-to-object-after-bind
+
+// Answer: null
+
+
+
+console.log('-----Task 15-----');
+// https://javascript.info/task/second-bind
+
+// Answer: John
+
+
+
+console.log('-----Task 16-----');
+// https://learn.javascript.ru/task/function-property-after-bind
+
+// Answer: undefined / Cause thwre is no 'test'-property in object
