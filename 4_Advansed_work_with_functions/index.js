@@ -158,3 +158,47 @@ counterFirst.decrease();
 counterFirst.decrease();
 counterFirst();
 console.log(counterFirst());
+
+
+
+console.log('-----Task 11-----');
+// https://learn.javascript.ru/task/output-numbers-100ms
+
+function printNumbers(from, to) {
+  let temp = from
+  const timerID = setInterval(() => {
+    if(temp !== to) {
+      console.log(temp++);
+    } else {
+      clearInterval(timerID);
+    }
+  }, 1000);
+}
+printNumbers(5, 15);
+
+
+
+console.log('-----Task 12-----');
+// https://learn.javascript.ru/task/settimeout-result
+
+// Answer: 100000000
+
+
+
+console.log('-----Task 13-----');
+// https://learn.javascript.ru/task/debounce
+
+function logTheNum() {
+  console.log('ok!');
+}
+function debounce(func, ms) {
+  let isReady = false;
+  return function() {
+    if (isReady) return;
+    isReady = true;
+    setTimeout(() => isReady = false, ms);
+  }
+}
+
+
+
