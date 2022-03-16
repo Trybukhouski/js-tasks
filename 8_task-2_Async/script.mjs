@@ -84,7 +84,6 @@ function addImagesCB(n, callback) {
   }
 }
 
-
 function AddImagesWithPromise(n) {
   if(n === 0) {
     return new Promise ((res, rej) => {
@@ -102,7 +101,7 @@ async function AddImagesWithAsyncfunc(n) {
   if(n === 0) {
     return await fetchImage();
   } else {
-    AddImagesWithPromise(n - 1).then(res => addElement(res));
+    AddImagesWithAsyncfunc(n - 1).then(res => addElement(res));
     return await fetchImage();
   }
 }
