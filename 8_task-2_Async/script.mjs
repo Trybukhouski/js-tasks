@@ -42,48 +42,6 @@ addImage();
 addImage();
 addImage();
 
-// CALLBACKS
-
-function addImagesCB(n, callback) {
-  for (let i = 0; i < n; i++) {
-    fetchImage().then((data) => callback(data));
-  }
-}
-
-function addAllImmagesCB(n, callback) {
-  const arr = promiseArrGenerator(n);
-  arr.forEach(el => el.then(url => callback(url)))
-}
-
-function addFirstImmageCB(n, callback) {
-  const arr = promiseArrGenerator(n);
-  arr[0].then(url => callback(url));
-}
-addFirstImmageCB(5, addElement)
-
-// PROMISE
-
-const loading = n => {
-  if(n === 0) {
-    return fetchImage();
-  } else {
-    loading(n - 1).then(url => addElement(url));
-    return fetchImage();
-  }
-}
-
-function promiseArrGenerator(n) {
-  let arr = [];
-  let i = 1;
-  while(i <= n) {
-    arr.push(fetchImage())
-    i++;
-  }
-  return arr;
-}
-
-// Async await
-
 async function f() {
 
   // CB: Загрузка изображений одно за другим
@@ -97,7 +55,7 @@ async function f() {
   await addFirstImmageCB(5, addElement);
 
   // Promise: Загрузка изображений одно за другим
-  await loading(5);
+  await AddImagesWithPromise(5);
 
   // Promise: Загрузка изображений одновременно
   await Promise.all(promiseArrGenerator(5))
@@ -108,5 +66,73 @@ async function f() {
   // Promise: Отображение первого изображения
   await Promise.race(promiseArrGenerator(5))
     .then((result => addElement(result)));
+
+  // Async-await: Загрузка изображений одно за другим
+  await AddImagesWithAsyncfunc(5);
+
+  // Async-await: Загрузка изображений одновременно
+  await addAllImmagesWithAsyncfunc(5);
+
+  // Async-await: Отображение первого изображения
+  await AddFirstImageWithAsyncfunc(5);
 }
 f();
+
+function addImagesCB(n, callback) {
+  for (let i = 0; i < n; i++) {
+    fetchImage().then((data) => callback(data));
+  }
+}
+
+
+function AddImagesWithPromise(n) {
+  if(n === 0) {
+    return new Promise ((res, rej) => {
+      res(fetchImage());
+    });
+  } else {
+    AddImagesWithPromise(n - 1).then(res => addElement(res));
+    return new Promise ((res, rej) => {
+      res(fetchImage());
+    });
+  }
+}
+
+async function AddImagesWithAsyncfunc(n) {
+  if(n === 0) {
+    return await fetchImage();
+  } else {
+    AddImagesWithPromise(n - 1).then(res => addElement(res));
+    return await fetchImage();
+  }
+}
+
+function addAllImmagesCB(n, callback) {
+  const arr = promiseArrGenerator(n);
+  arr.forEach(el => el.then(url => callback(url)))
+}
+
+async function addAllImmagesWithAsyncfunc(n) {
+  const arr = await promiseArrGenerator(n);
+  arr.forEach(el => el.then(url => addElement(url)));
+}
+
+function addFirstImmageCB(n, callback) {
+  const arr = promiseArrGenerator(n);
+  arr[0].then(url => callback(url));
+}
+
+async function AddFirstImageWithAsyncfunc(n) {
+  const arr = await promiseArrGenerator(n);
+  arr[0].then(url => addElement(url));
+}
+
+function promiseArrGenerator(n) {
+  let arr = [];
+  let i = 1;
+  while(i <= n) {
+    arr.push(fetchImage())
+    i++;
+  }
+  return arr;
+}
