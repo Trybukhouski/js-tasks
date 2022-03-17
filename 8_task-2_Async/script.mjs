@@ -55,7 +55,7 @@ async function f() {
   await addFirstImmageCB(5, addElement);
 
   // Promise: Загрузка изображений одно за другим
-  await AddImagesWithPromise(5);
+  await addImagesWithPromise(5);
 
   // Promise: Загрузка изображений одновременно
   await Promise.all(promiseArrGenerator(5))
@@ -67,14 +67,11 @@ async function f() {
   await Promise.race(promiseArrGenerator(5))
     .then((result => addElement(result)));
 
-  // Async-await: Загрузка изображений одно за другим
-  await AddImagesWithAsyncfunc(5);
-
   // Async-await: Загрузка изображений одновременно
   await addAllImmagesWithAsyncfunc(5);
 
   // Async-await: Отображение первого изображения
-  await AddFirstImageWithAsyncfunc(5);
+  await addFirstImageWithAsyncfunc(5);
 }
 f();
 
@@ -84,25 +81,9 @@ function addImagesCB(n, callback) {
   }
 }
 
-function AddImagesWithPromise(n) {
-  if(n === 0) {
-    return new Promise ((res, rej) => {
-      res(fetchImage());
-    });
-  } else {
-    AddImagesWithPromise(n - 1).then(res => addElement(res));
-    return new Promise ((res, rej) => {
-      res(fetchImage());
-    });
-  }
-}
-
-async function AddImagesWithAsyncfunc(n) {
-  if(n === 0) {
-    return await fetchImage();
-  } else {
-    AddImagesWithAsyncfunc(n - 1).then(res => addElement(res));
-    return await fetchImage();
+function addImagesWithPromise(n) {
+  for (let i = n; i > 0; i--) {
+    fetchImage().then(url => addElement(url));
   }
 }
 
@@ -121,7 +102,7 @@ function addFirstImmageCB(n, callback) {
   arr[0].then(url => callback(url));
 }
 
-async function AddFirstImageWithAsyncfunc(n) {
+async function addFirstImageWithAsyncfunc(n) {
   const arr = await promiseArrGenerator(n);
   arr[0].then(url => addElement(url));
 }
