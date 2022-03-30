@@ -14,7 +14,8 @@ class OneMoment {
     const now = new Date();
     const days = (now - this.date) / 86400000;
     if(days > 365) return `${now.getFullYear() - this.date.getFullYear()} years ago`;
-    if(days > 31) return `${now.getMonth() - this.date.getMonth()} months ago`;
+    if(days > 61) return `${now.getMonth() - this.date.getMonth()} months ago`;
+    if(days > 31) return 'one month ago';
     if(days > 14) return `${Math.floor((now.getDate() - this.date.getDate()) / 7)} weeks ago`;
     if(days > 1) return `${now.getDate() - this.date.getDate()} days ago`;
     if(days === 1) return 'one day ago';
@@ -30,8 +31,8 @@ class OneMoment {
   }
 
   parse(date, format) {
-    const day = +date.substr(format.indexOf('D'), 2);
-    const month = +date.substr(format.indexOf('M'), 2) - 1;
+    const day = date.substr(format.indexOf('D'), 2);
+    const month = date.substr(format.indexOf('M'), 2) - 1;
     const year = date.substr(format.indexOf('Y'), 4);
     this.date = new Date(year, month, day);
     return this;
