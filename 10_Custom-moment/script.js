@@ -28,14 +28,24 @@ class OneMoment {
   toDate() {
     return this;
   }
+
+  parse(date, format) {
+    const day = +date.substr(format.indexOf('D'), 2);
+    const month = +date.substr(format.indexOf('M'), 2) - 1;
+    const year = date.substr(format.indexOf('Y'), 4);
+    this.date = new Date(year, month, day);
+    return this;
+  }
 }
 
-
+// Examples
 
 const now = new OneMoment(new Date());
 const march27 = new OneMoment(1648365431000);
+const someDate = new OneMoment(new Date());
+const otherDate = someDate.parse('21-12-2012', 'DD-MM-YYYY');
 
-console.log(now.format('dd-mm-yyyy'), march27.format('dd/mm/yyyy'));
+console.log(now.format('dd-mm-yyyy'));
 console.log(march27.fromNow());
-const date = now.toDate()
+const date = otherDate.toDate()
 console.log(date instanceof OneMoment);
