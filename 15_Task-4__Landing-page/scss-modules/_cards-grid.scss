@@ -1,0 +1,12 @@
+.cards-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 992px) {
+  .cards-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}

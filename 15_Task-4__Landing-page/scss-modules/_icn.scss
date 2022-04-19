@@ -1,0 +1,17 @@
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #d0d0d0;
+  border-radius: 50%;
+  font-size: 30px;
+
+  &:hover {
+    border: 2px solid #ffa500;
+    color: #ffa500;
+    transition: all 0.5s ease;
+    transform: rotate(360deg);
+  }
+}

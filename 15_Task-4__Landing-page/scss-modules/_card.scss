@@ -1,0 +1,35 @@
+.card {
+  background-color: #fff;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 25px;
+
+  .content {
+    text-align: right;
+  }
+
+  .icon {
+    flex-shrink: 0;
+  }
+}
+
+.card_reverse {
+  flex-direction: row-reverse;
+
+  .content {
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    flex-direction: column-reverse;
+
+    .content {
+      text-align: center;
+    }
+  }
+}

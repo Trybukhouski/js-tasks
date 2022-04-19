@@ -1,0 +1,25 @@
+.title {
+  text-transform: uppercase;
+
+  a {
+    color: #000;
+  }
+
+  a:hover {
+    color: #ffa500;
+  }
+
+  &_block {
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  &_section {
+    font-size: 24px;
+  }
+
+  &_main {
+    font-size: 28px;
+    color: #fff;
+  }
+}
