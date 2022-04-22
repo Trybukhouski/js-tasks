@@ -60,9 +60,27 @@
   }
 }
 
+// IMAGES
+
+.images {
+  background-color: #efefef;
+
+  &__title {
+    margin-bottom: 70px;
+  }
+
+  &__posts-grid {
+    margin-bottom: 30px;
+  }
+
+  &__btn-set {
+    justify-content: center;
+  }
+}
+
 // OTHER
 
-.services, .images, .contact {
+.services, .contact {
   background-color: #efefef;
 
   &__title {

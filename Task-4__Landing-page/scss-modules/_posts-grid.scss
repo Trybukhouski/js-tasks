@@ -1,29 +1,22 @@
 .posts-grid {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  row-gap: 20px;
-  max-height: 1500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: fit-content;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
   &__post {
-    width: 30%;
+    width: 100%;
     transition: all 0.5s linear;
   }
 
-  @media only screen and (max-width: 992px) {
-    max-height: 2500px;
-
-    &__post {
-      width: 47%;
-    }
-  }
-
   @media only screen and (max-width: 768px) {
-    max-height: fit-content;
-
-    &__post {
-      width: 100%;
-    }
+    grid-template-columns: 1fr;
   }
 }
