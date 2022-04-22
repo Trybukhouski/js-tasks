@@ -5,9 +5,6 @@ const imagesSection = document.querySelector(".images");
 const pageNav = imagesSection.querySelector('.btn-set');
 const currentPageWindow = imagesSection.querySelector(".current-page");
 const posts = document.querySelectorAll(".post");
-let currentPage = 1;
-let loadedPages = 1;
-let pages = [];
 
 postImages.forEach((el) => {
   el.addEventListener("mouseenter", addLayer);
@@ -73,64 +70,90 @@ function showHideMenu() {
 
 // ------TASK 5------------
 
-// firstLoading
+let currentPage = 1;
+let pages = [];
 
-updatePosts(0);
+// First page loading
 
-// Change pages
-pageNav.addEventListener("click", changeCurrentPage);
+(async function firstPageLoading() {
+  await pageDataLoading(9);
+  posts.forEach((post, i) => {
+    updatePost(post, pages[0][i].origin, 
+      pages[0][i].name, 
+      pages[0][i].date, 
+      pages[0][i].link)
+  })
+})()
 
-async function changeCurrentPage(event) {
-    if(event.target.id === "btn_left" || event.target.id === "icn_left") {
-        currentPage = currentPage === 1 ? 1 : currentPage - 1;
-        updatePosts(currentPage);
-    }
-    if(event.target.id === "btn_right" || event.target.id === "icn_right") {
-        currentPage++;
-        updatePosts(currentPage);
-        if(currentPage > loadedPages) {
-            loadedPages++;
-            updatePosts(currentPage);
-        } 
-    }
-    currentPageWindow.innerText = currentPage;
-}
+// Next page loading
 
-// Data loader
-async function cardsDataArrayLoader() {
-    let count = 0;
-    let cards = [];
-    while(count < 9) {
-        await fetch("https://api.giphy.com/v1/gifs/random?api_key=zXE3BnfdrQ0rcZN30gWwwgQ3IyYNp28L&tag=dogs&rating=g")
-            .then((resp) => resp.json())
-            .then((data) => cards.push({
-                origin: data.data.images.downsized_large.url,
-                name: data.data.title,
-                date: data.data.import_datetime,
-                link: data.data.embed_url
-        }));
-        count++;
-    }
-    pages.push(cards);
-    count = 0;
-    return pages;
-}
+pageNav.addEventListener("click", pageRender);
 
-function addContentToPosts(i, src, title, date, link) {
-    posts[i].firstElementChild.firstElementChild.src = src;
-    posts[i].children[1].children[0].firstElementChild.innerText = title;
-    posts[i].children[1].children[0].firstElementChild.href = link;
-    posts[i].children[1].children[1].innerText = date;
-}
+async function pageRender(event) {
 
-async function updatePosts(pageNum) {
-  posts.forEach(el => el.children[2].hidden = false);
-  await cardsDataArrayLoader();
+  // Add preloader for all posts
+  posts.forEach(post => {
+    post.lastElementChild.hidden = false;
+  })
 
-  for(let i = 0; i < 9; i++) {
-      addContentToPosts(i, pages[pageNum][i].origin, pages[pageNum][i].name, pages[pageNum][i].date, pages[pageNum][i].link);
-      posts[i].firstElementChild.firstElementChild.onload = function() {
-        posts[i].children[2].hidden = true;
-      }
+  // Change current page
+  changeCurrentPage(event);
+
+  // Update nav UI
+  currentPageWindow.innerText = currentPage;
+
+  // Load data for current page
+  if(pages.length < currentPage) {
+    await pageDataLoading(9);
   }
-};
+
+  // Render page
+  posts.forEach((post, i) => {
+    updatePost(post, pages[currentPage - 1][i].origin, 
+      pages[currentPage - 1][i].name, 
+      pages[currentPage - 1][i].date, 
+      pages[currentPage - 1][i].link)
+  })
+}
+
+// Change current page func
+function changeCurrentPage(event) {
+  if(event.target.id === "btn_left" || event.target.id === "icn_left") {
+      currentPage = currentPage <= 1 ? 1 : currentPage - 1;
+  }
+  if(event.target.id === "btn_right" || event.target.id === "icn_right") {
+      currentPage++;
+  }
+}
+
+// Data loading
+async function pageDataLoading(n) {
+  let count = 0;
+  let page = [];
+  while(count < n) {
+    await fetch("https://api.giphy.com/v1/gifs/random?api_key=zXE3BnfdrQ0rcZN30gWwwgQ3IyYNp28L&tag=dogs&rating=g")
+      .then((response) => response.json())
+      .then((postData) => {
+        page.push({
+          origin: postData.data.images.downsized_large.url,
+          name: postData.data.title,
+          date: postData.data.import_datetime,
+          link: postData.data.embed_url
+        });
+      });
+    count++;
+  }
+  pages.push(page);
+}
+
+// Post update
+function updatePost(post, src, title, date, link) {
+  post.firstElementChild.firstElementChild.src = src;
+  post.children[1].children[0].firstElementChild.innerText = title;
+  post.children[1].children[0].firstElementChild.href = link;
+  post.children[1].children[1].innerText = date;
+  post.firstElementChild.firstElementChild.onload = function() {
+    post.lastElementChild.hidden = true;
+  }
+}
+
