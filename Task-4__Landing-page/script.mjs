@@ -135,7 +135,7 @@ async function pageDataLoading(n) {
       .then((response) => response.json())
       .then((postData) => {
         page.push({
-          origin: postData.data.images.downsized_large.url,
+          origin: postData.data.images.downsized_medium.url,
           name: postData.data.title,
           date: postData.data.import_datetime,
           link: postData.data.embed_url
